@@ -34,9 +34,8 @@
         /* Styles for the envelope and opening animation */
         #envelope {
             z-index: 10;
-            transition: transform 0.7s ease-in-out, opacity 0.7s ease-in-out;
-            transform-style: preserve-3d; /* Required for 3D transform */
-            transform-origin: top center;
+            transition: transform 0.6s ease-in, opacity 0.6s ease-in; /* New transition */
+            transform-origin: center;
         }
         
         /* This is the key for the staggered fade-in effect */
@@ -54,7 +53,7 @@
         
         .opened #envelope {
             opacity: 0;
-            transform: rotateX(-120deg) translateY(-50px) scale(0.9);
+            transform: scale(0.95); /* Smoother fade out effect */
             pointer-events: none;
         }
         
@@ -100,6 +99,33 @@
             animation: pulse-container-glow 4s ease-in-out infinite;
         }
 
+        /* NEW: Shiny GOLD animation for You're Invited container using a pseudo-element */
+        .shiny-box {
+            position: relative;
+            overflow: hidden;
+        }
+        .shiny-box::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -150%;
+            width: 100%;
+            height: 100%;
+            transform: skewX(-25deg);
+            background-image: linear-gradient(
+                100deg,
+                transparent,
+                rgba(255, 215, 0, 0.4), /* Gold highlight */
+                transparent
+            );
+            animation: shiny-pass 3.5s linear infinite;
+        }
+        @keyframes shiny-pass {
+            100% {
+                left: 150%;
+            }
+        }
+        
     </style>
 </head>
 <body class="flex items-start justify-center min-h-screen p-4 sm:p-8 pt-20 sm:pt-24">
@@ -107,8 +133,8 @@
     <div id="container" class="w-full max-w-3xl relative perspective-[1000px]">
 
         <!-- Envelope Layer -->
-        <div id="envelope" class="absolute inset-0 bg-white rounded-2xl shadow-2xl flex flex-col items-center justify-center text-center p-8 cursor-pointer">
-            <img src="https://fa0uejliegotib9m.public.blob.vercel-storage.com/Logo_1-9nZp1lzY4U50CNOHAewe6lmnM1NLmQ.png" alt="Planet Token Logo" class="h-28 w-28 mb-6" onerror="this.onerror=null;this.src='https://placehold.co/112x112/16a34a/FFFFFF?text=P';">
+        <div id="envelope" class="absolute inset-0 bg-white rounded-2xl shadow-2xl flex flex-col items-center justify-start text-center p-8 pt-16 cursor-pointer">
+            <img src="https://fa0uejliegotib9m.public.blob.vercel-storage.com/Logo_1-9nZp1lzY4U50CNOHAewe6lmnM1NLmQ.png" alt="Planet Token Logo" class="h-36 w-36 mb-8">
             <h2 class="text-3xl font-bold text-gray-800">An Invitation For You</h2>
             <p class="text-gray-500 mt-2">From the Planet Coin Team</p>
             <button id="open-button" class="mt-8 bg-green-600 text-white font-bold py-3 px-8 rounded-lg transition-transform transform hover:scale-105">
@@ -123,7 +149,7 @@
                 <div class="fade-in-item" style="--delay: 0.2s;">
                     <!-- Header Section -->
                     <div class="text-center mb-6 flex flex-col items-center">
-                        <img src="https://fa0uejliegotib9m.public.blob.vercel-storage.com/Logo_1-9nZp1lzY4U50CNOHAewe6lmnM1NLmQ.png" alt="Planet Coin Logo" class="h-20 w-20 mb-4" onerror="this.onerror=null;this.src='https://placehold.co/80x80/16a34a/FFFFFF?text=P';">
+                        <img src="https://fa0uejliegotib9m.public.blob.vercel-storage.com/Logo_1-9nZp1lzY4U50CNOHAewe6lmnM1NLmQ.png" alt="Planet Coin Logo" class="h-20 w-20 mb-4">
                         <h1 class="animated-heading text-4xl sm:text-5xl font-bold text-gray-800">
                             Planet Coin
                         </h1>
@@ -136,11 +162,11 @@
                     
                     <div class="fade-in-item" style="--delay: 0.4s;">
                         <!-- Date & Location -->
-                        <div class="text-center content-box py-6 px-4 rounded-xl border border-gray-200">
+                        <div class="text-center content-box shiny-box py-6 px-4 rounded-xl border border-gray-200">
                             <h2 class="text-xl font-bold text-gray-800 mb-2">You're Invited!</h2>
                             <div class="text-gray-700 text-lg">
                                 <p><span class="font-semibold">Date:</span> 8th & 9th July</p>
-                                <p><span class="font-semibold">Location:</span> Sterling Resort Fernhill, Ooty</p>
+                                <p><span class="font-semibold">Location:</span> Sterling Resort Fern Hill, Ooty, Tamil Nadu, South India</p>
                             </div>
                         </div>
                     </div>
@@ -148,8 +174,8 @@
                     <div class="fade-in-item" style="--delay: 0.6s;">
                         <!-- Why you should be part of this -->
                         <div class="animated-container bg-green-600 text-white p-6 rounded-xl text-center">
-                            <h3 class="text-xl font-bold mb-2">Why You Can't Miss This Investment</h3>
-                            <p class="opacity-90">Your ground-floor entry to the future of green finance. Back impactful, world-changing projects. This is your chance to be early and help shape a sustainable tomorrow.</p>
+                            <h3 class="text-xl font-bold mb-2">Be Part of This Grand Beginning!</h3>
+                            <p class="opacity-90">This isn't just an event; it's a celebration of a new chapter for our planet. Join visionaries, leaders, and pioneers. Witness the launch and be there as it happens.</p>
                         </div>
                     </div>
                     
